@@ -1,0 +1,204 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.w{padding:1.25rem 1rem;font-family:var(--font-sans);direction:rtl;background:#0f0f0f;min-height:100vh;border-radius:var(--border-radius-lg)}
+.mc{background:#1a1a1a;border:0.5px solid #2e2e2e;border-radius:var(--border-radius-lg);padding:1rem 1.2rem;margin-bottom:10px}
+.mc.updated{border:1.5px solid #2d5a2d}
+.mh{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;flex-shrink:0}
+.update-tag{font-size:11px;font-weight:500;padding:2px 8px;border-radius:var(--border-radius-md);background:#1a3a1a;color:#6dbf6d;margin-bottom:8px;display:inline-block}
+.mtitle{font-size:15px;font-weight:500;color:#f0f0f0}
+.msub{font-size:12px;color:#888;margin-top:1px}
+.il{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.ir{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:#d4d4d4;line-height:1.5}
+.ir.new-item{background:#1a2e1a;border-radius:var(--border-radius-md);padding:4px 8px;margin-right:-8px}
+.dot{width:5px;height:5px;border-radius:50%;margin-top:7px;flex-shrink:0}
+.qty{font-size:11px;font-weight:500;padding:1px 7px;border-radius:var(--border-radius-md);background:#252525;color:#aaa;flex-shrink:0;margin-top:3px}
+.divider{border:none;border-top:0.5px solid #2a2a2a;margin:10px 0}
+.nu-row{display:flex;flex-wrap:wrap;gap:5px}
+.nu{font-size:11px;font-weight:500;padding:2px 8px;border-radius:var(--border-radius-md)}
+.drink{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.sl{font-size:11px;font-weight:500;color:#666;letter-spacing:.06em;margin:1.2rem 0 .5rem}
+.complete-banner{background:#0d2e0d;border:0.5px solid #2d5a2d;border-radius:var(--border-radius-lg);padding:1rem 1.2rem;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px}
+.cb-icon{width:36px;height:36px;border-radius:50%;background:#1f5c1f;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.height-card{border:1.5px solid #1a3d5c;border-radius:var(--border-radius-lg);padding:1rem 1.2rem;margin-bottom:10px;background:#0d1e2e}
+.step-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.step-num{width:22px;height:22px;border-radius:50%;background:#0d2a42;color:#5aa8d8;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-text{font-size:13.5px;color:#e0e0e0;font-weight:500}
+.step-note{font-size:12px;color:#888;margin-top:2px;line-height:1.5}
+.insight{background:#111;padding:.75rem 1rem;margin-top:10px;font-size:13px;color:#999;line-height:1.6;border-right:3px solid #378ADD;border-radius:0}
+.proto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:10px}
+.proto-item{background:#1a1a1a;border:0.5px solid #2e2e2e;border-radius:var(--border-radius-lg);padding:.85rem 1rem;display:flex;align-items:flex-start;gap:10px}
+.proto-icon{width:34px;height:34px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.proto-label{font-size:13px;font-weight:500;color:#e0e0e0}
+.proto-desc{font-size:12px;color:#888;line-height:1.5;margin-top:2px}
+.btr{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+button{background:#1a1a1a;border:0.5px solid #3a3a3a;color:#d0d0d0;border-radius:var(--border-radius-md);padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+button:hover{background:#252525}
+</style>
+
+<div class="w">
+<h2 class="sr-only">الجدول الغذائي اليومي المكتمل مع الكميات — مظهر داكن</h2>
+
+<div class="complete-banner">
+  <div class="cb-icon"><i class="ti ti-check" style="color:#6dbf6d;font-size:18px" aria-hidden="true"></i></div>
+  <div>
+    <div style="font-size:14px;font-weight:500;color:#6dbf6d">تغطية 100% — النسخة النهائية بالكميات</div>
+    <div style="font-size:12px;color:#4a8f4a;margin-top:3px;line-height:1.55">الكميات المضافة: جبن شيدر علبة صغيرة، رز 80غ + بتلو 150غ، مكسرات 10غ لكل نوع.</div>
+  </div>
+</div>
+
+<div class="sl">الوجبات الرئيسية</div>
+
+<div class="mc">
+  <div class="mh">
+    <span class="badge" style="background:#2a1f00;color:#c8922a">الصباح</span>
+    <div><div class="mtitle">الفطور — تشغيل الجهاز</div><div class="msub">كالسيوم + فسفور + بروتين خفيف</div></div>
+  </div>
+  <div class="il">
+    <div class="ir"><span class="qty">2 قطعة</span><div class="dot" style="background:#BA7517"></div>توست</div>
+    <div class="ir"><span class="qty">علبة صغيرة ~20غ</span><div class="dot" style="background:#BA7517"></div>جبن شيدر أو فلمنك</div>
+    <div class="ir"><span class="qty">1 ملعقة صغيرة</span><div class="dot" style="background:#BA7517"></div>عسل طبيعي</div>
+    <div class="ir"><span class="qty">اختياري</span><div class="dot" style="background:#BA7517"></div>شوربة فطر — لدعم الماغنسيوم وفيتامين د</div>
+  </div>
+  <hr class="divider">
+  <div class="nu-row">
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">كالسيوم</span>
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">فسفور</span>
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">ب2</span>
+    <span class="nu" style="background:#162008;color:#97c459">ماغنسيوم — فطر</span>
+    <span class="nu" style="background:#162008;color:#97c459">فيتامين د — فطر</span>
+  </div>
+</div>
+
+<div class="mc updated">
+  <div class="update-tag"><i class="ti ti-sparkles" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i> محدّث — الثغرات مسدودة</div>
+  <div class="mh">
+    <span class="badge" style="background:#0d2010;color:#6dbf6d">الظهر</span>
+    <div><div class="mtitle">الغداء — وقود الجسم الكامل</div><div class="msub">بروتين + معادن + تغطية شاملة للمغذيات الصغرى</div></div>
+  </div>
+  <div class="il">
+    <div class="ir"><span class="qty">80غ قبل الطبخ</span><div class="dot" style="background:#639922"></div>رز مندي أو هريس</div>
+    <div class="ir"><span class="qty">150غ</span><div class="dot" style="background:#639922"></div>لحم بتلو مسلوق أو مشوي بدون دهون</div>
+    <div class="ir new-item"><span class="qty" style="background:#1a2e1a;color:#6dbf6d">إيدام</span><div class="dot" style="background:#3B6D11"></div>بامية غنية مع طماطم طبيعية + شطة خضراء</div>
+  </div>
+  <div class="drink" style="background:#0d2010;color:#6dbf6d"><i class="ti ti-glass-full" aria-hidden="true"></i> عصير توت أو فراولة — بدون سكر مضاف</div>
+  <hr class="divider">
+  <div class="nu-row">
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">حديد هيم</span>
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">زنك</span>
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">ب12</span>
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">ب6</span>
+    <span class="nu" style="background:#0a2018;color:#5dcaa5">فسفور</span>
+    <span class="nu" style="background:#162008;color:#97c459">فيتامين C — عصير</span>
+    <span class="nu" style="background:#162008;color:#97c459">فولات — بامية</span>
+    <span class="nu" style="background:#162008;color:#97c459">فيتامين K — بامية</span>
+    <span class="nu" style="background:#2a0d0d;color:#f09595">فيتامين A — طماطم</span>
+    <span class="nu" style="background:#2a0d0d;color:#f09595">ليكوبين — طماطم</span>
+  </div>
+</div>
+
+<div class="sl">التمرين والاستشفاء</div>
+
+<div class="mc">
+  <div class="mh">
+    <span class="badge" style="background:#2a1f00;color:#c8922a">قبل النادي</span>
+    <div><div class="mtitle">وقود التمرين — احتراق نظيف</div><div class="msub">طاقة سريعة + تركيز + أداء</div></div>
+  </div>
+  <div class="il">
+    <div class="ir"><span class="qty">1 حبة</span><div class="dot" style="background:#BA7517"></div>موزة</div>
+    <div class="ir"><span class="qty">3 حبات</span><div class="dot" style="background:#BA7517"></div>تمرات</div>
+    <div class="ir"><span class="qty">1 كوب</span><div class="dot" style="background:#BA7517"></div>قهوة سوداء</div>
+  </div>
+  <hr class="divider">
+  <div class="nu-row">
+    <span class="nu" style="background:#2a1a00;color:#EF9F27">بوتاسيوم — موز</span>
+    <span class="nu" style="background:#2a1a00;color:#EF9F27">ب6 — موز</span>
+    <span class="nu" style="background:#2a1a00;color:#EF9F27">ماغنسيوم — تمر</span>
+    <span class="nu" style="background:#2a1a00;color:#EF9F27">كافيين — قهوة</span>
+  </div>
+</div>
+
+<div class="mc">
+  <div class="mh">
+    <span class="badge" style="background:#1a1530;color:#AFA9EC">بعد النادي</span>
+    <div><div class="mtitle">سناك الاستشفاء — إعادة البناء</div><div class="msub">زنك + ماغنسيوم + فسفور + أوميغا 3</div></div>
+  </div>
+  <div class="il">
+    <div class="ir"><span class="qty">1 سكوب</span><div class="dot" style="background:#7F77DD"></div>بيف بروتين</div>
+    <div class="ir"><span class="qty">10غ</span><div class="dot" style="background:#7F77DD"></div>لوز</div>
+    <div class="ir"><span class="qty">10غ</span><div class="dot" style="background:#7F77DD"></div>كاجو</div>
+    <div class="ir"><span class="qty">10غ</span><div class="dot" style="background:#7F77DD"></div>فستق</div>
+    <div class="ir"><span class="qty">10غ</span><div class="dot" style="background:#7F77DD"></div>عين جمل</div>
+    <div class="ir"><span class="qty">كبشة يد</span><div class="dot" style="background:#7F77DD"></div>بذور اليقطين (القرع)</div>
+  </div>
+  <hr class="divider">
+  <div class="nu-row">
+    <span class="nu" style="background:#1a1530;color:#AFA9EC">زنك — بذور + كاجو</span>
+    <span class="nu" style="background:#1a1530;color:#AFA9EC">ماغنسيوم — لوز + بذور</span>
+    <span class="nu" style="background:#1a1530;color:#AFA9EC">فسفور — بذور + بروتين</span>
+    <span class="nu" style="background:#1a1530;color:#AFA9EC">أوميغا 3 — عين جمل</span>
+    <span class="nu" style="background:#1a1530;color:#AFA9EC">فيتامين E — لوز</span>
+    <span class="nu" style="background:#1a1530;color:#AFA9EC">فولات — بذور + مكسرات</span>
+  </div>
+</div>
+
+<div class="mc">
+  <div class="mh">
+    <span class="badge" style="background:#0a1a2e;color:#85B7EB">المساء</span>
+    <div><div class="mtitle">العشاء — المدفع الغذائي</div><div class="msub">ثلاثية كاملة: كالسيوم + فسفور + فيتامين د</div></div>
+  </div>
+  <div class="il">
+    <div class="ir"><span class="qty">100غ</span><div class="dot" style="background:#378ADD"></div>سردين جوزيان بزيت الزيتون — بعظامه كاملاً</div>
+    <div class="ir"><span class="qty">200غ</span><div class="dot" style="background:#378ADD"></div>بطاطس مسلوقة</div>
+  </div>
+  <div class="drink" style="background:#0a1a2e;color:#85B7EB"><i class="ti ti-glass-full" aria-hidden="true"></i> عصير توت أو فراولة — بدون سكر مضاف</div>
+  <hr class="divider">
+  <div class="nu-row">
+    <span class="nu" style="background:#0a1a2e;color:#85B7EB">أوميغا 3 — ممتاز</span>
+    <span class="nu" style="background:#0a1a2e;color:#85B7EB">ب12 — ممتاز</span>
+    <span class="nu" style="background:#0a1a2e;color:#85B7EB">كالسيوم — عظام السردين</span>
+    <span class="nu" style="background:#0a1a2e;color:#85B7EB">فسفور — مصدر رئيسي</span>
+    <span class="nu" style="background:#0a1a2e;color:#85B7EB">فيتامين د — سردين</span>
+    <span class="nu" style="background:#0a1a2e;color:#85B7EB">سيلينيوم</span>
+    <span class="nu" style="background:#2a1a00;color:#EF9F27">بوتاسيوم + ب6 — بطاطس</span>
+    <span class="nu" style="background:#162008;color:#97c459">فيتامين C — عصير</span>
+  </div>
+</div>
+
+<div class="sl">بروتوكول الطول — يومي لا يُتفاوت عليه</div>
+
+<div class="height-card">
+  <div class="mh">
+    <div style="width:40px;height:40px;border-radius:50%;background:#0d2a42;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <i class="ti ti-arrow-up" style="color:#5aa8d8;font-size:20px" aria-hidden="true"></i>
+    </div>
+    <div><div class="mtitle">خطة تحفيز النمو</div><div class="msub">تمرين + تغذية + شمس</div></div>
+  </div>
+  <div style="display:inline-block;font-size:11px;padding:3px 10px;border-radius:var(--border-radius-md);margin-bottom:10px;background:#0d2a42;color:#5aa8d8">القاعدة الذهبية: الكالسيوم والفسفور لا يبنيان الطول بدون فيتامين د كافٍ</div>
+  <div class="step-row"><div class="step-num">1</div><div><div class="step-text">قفزة الماساي + عقلة يومياً</div><div class="step-note">ضغط ميكانيكي على الغضاريف يحفز إطالة العظم — العقلة تمد العمود الفقري وتفتح المسافات بين الفقرات</div></div></div>
+  <div class="step-row"><div class="step-num">2</div><div><div class="step-text">30 دقيقة شمس — كشف اليد والساق</div><div class="step-note">المفتاح الذي يُفتح أمام الكالسيوم والفسفور — بدونه يمران دون بناء حقيقي في العظم</div></div></div>
+  <div class="step-row"><div class="step-num">3</div><div><div class="step-text">بذور اليقطين — فسفور مركّز يومي</div><div class="step-note">مُدمج في سناك الاستشفاء في أفضل نافذة امتصاص بعد التمرين</div></div></div>
+  <div class="step-row" style="margin-bottom:0"><div class="step-num">4</div><div><div class="step-text">السردين بعظامه 100غ — ثلاثي كالسيوم + فسفور + فيتامين د</div><div class="step-note">الثلاثي الكامل في علبة واحدة بنسبة 2:1 طبيعية</div></div></div>
+  <div class="insight">الترتيب الصحيح: الشمس أولاً ← تفتح مستقبلات فيتامين د ← ثم الكالسيوم والفسفور يجدان الباب مفتوحاً للبناء الفعلي في العظم.</div>
+</div>
+
+<div class="sl">بروتوكول التشغيل اليومي الثابت</div>
+
+<div class="proto">
+  <div class="proto-item">
+    <div class="proto-icon" style="background:#0a1a2e"><i class="ti ti-droplet" style="color:#5aa8d8;font-size:18px" aria-hidden="true"></i></div>
+    <div><div class="proto-label">4 لتر ماء — خط أحمر</div><div class="proto-desc">تصفية نواتج اللحم والسردين والبروتين</div></div>
+  </div>
+  <div class="proto-item">
+    <div class="proto-icon" style="background:#2a1a00"><i class="ti ti-sun" style="color:#EF9F27;font-size:18px" aria-hidden="true"></i></div>
+    <div><div class="proto-label">30 دقيقة شمس يومية</div><div class="proto-desc">يولّد فيتامين د ويفتح الباب للكالسيوم والفسفور</div></div>
+  </div>
+</div>
+
+<div class="btr">
+  <button onclick="sendPrompt('كم السعرات الحرارية التقديرية لهذا الجدول النهائي بالكميات المحددة؟')">تقدير السعرات ↗</button>
+  <button onclick="sendPrompt('كم غرام بروتين تقريباً في هذا الجدول اليومي بالكميات المحددة؟')">حساب البروتين ↗</button>
+</div>
+
+</div>
