@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>جدولي الغذائي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,Tahoma,sans-serif;background:#06080f;color:#c8d8f0;min-height:100vh;padding-bottom:2.5rem;line-height:1.6}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(30,60,120,.07) 60px,rgba(30,60,120,.07) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(30,60,120,.07) 60px,rgba(30,60,120,.07) 61px)}
+body>*{position:relative;z-index:1}
+.top{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,#0a1226,#070a15);border-bottom:1px solid #12233d;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.hd{padding:.9rem 1rem .5rem;max-width:900px;margin:0 auto}
+.ht{font-size:21px;font-weight:800;color:#fff;text-align:center}.ht span{color:#60a8f0}
+.hs{font-size:12px;color:#4a6a8a;text-align:center;margin:1px 0 9px}
+.pills{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.pill{font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1px solid color-mix(in srgb,var(--a) 40%,transparent);color:var(--a);background:color-mix(in srgb,var(--a) 10%,transparent)}
+.opt{display:flex;justify-content:center;margin:9px 0 2px}
+.opt label{font-size:11.5px;color:#6f8fb0;cursor:pointer;display:flex;align-items:center;gap:6px}
+.opt input{accent-color:#3a80d0}
+.tabs{display:flex;max-width:900px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.tab{flex:1;text-align:center;font-size:13px;font-weight:600;padding:11px 14px;white-space:nowrap;color:#3a5a7a;cursor:pointer;border-bottom:2px solid transparent;transition:.2s}
+.tab.on{color:#90c8ff;border-bottom-color:#3a80d0}
+.page{display:none;padding:1rem;max-width:900px;margin:0 auto}.page.on{display:block}
+.sl{font-size:12px;font-weight:700;color:#4a6a8a;letter-spacing:.04em;margin:1.3rem 0 .6rem;padding-right:4px;display:flex;align-items:center;gap:8px}
+.sl::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#12233d,transparent)}
+.amber{--a:#f0a030}.rose{--a:#f06a9a}.gold{--a:#e3c04a}.blue{--a:#5aa8f0}.purple{--a:#a78bfa}.green{--a:#4cc38a}.teal{--a:#2dd4bf}.lime{--a:#a3d94a}.red{--a:#f2665a}.plain{--a:#60a8f0}
+.mc{border-radius:16px;padding:1rem 1.1rem;margin-bottom:12px;border:1px solid color-mix(in srgb,var(--a) 24%,#0b1224);background:linear-gradient(135deg,color-mix(in srgb,var(--a) 9%,#080c18),#070a14)}
+.mc.plain{background:#070d1c;border-color:#0f1e35}
+.mh{display:flex;align-items:center;gap:11px;margin-bottom:11px}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex-shrink:0;background:color-mix(in srgb,var(--a) 16%,transparent)}
+.mt{font-size:16px;font-weight:700;color:#ddeeff;flex:1}.mt.sm{font-size:14px;margin-bottom:10px;color:var(--a)}
+.ms{font-size:11px;color:#4a6a8a;margin-top:1px}
+.qty{font-size:11px;font-weight:700;padding:4px 10px;border-radius:7px;white-space:nowrap;color:var(--a);background:color-mix(in srgb,var(--a) 13%,transparent)}
+.sr{display:flex;gap:6px;flex-wrap:wrap}
+.st{font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid color-mix(in srgb,var(--a) 35%,transparent);color:var(--a);background:color-mix(in srgb,var(--a) 8%,transparent)}
+.dv{border:0;border-top:1px solid rgba(255,255,255,.06);margin:11px 0}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tg{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:6px;border:1px solid color-mix(in srgb,var(--a) 30%,transparent);color:var(--a)}
+details{margin-top:11px}
+summary{cursor:pointer;font-size:12px;font-weight:600;color:#6f9fd0;list-style:none;padding:7px 0;user-select:none}
+summary::-webkit-details-marker{display:none}
+details h4{font-size:11.5px;color:#4a6a8a;margin:10px 0 6px}
+.cells{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:7px}
+.cell{background:rgba(255,255,255,.035);border-radius:10px;padding:7px 10px}
+.cell small{display:block;font-size:10.5px;color:#5f7fa0}
+.cell b{font-size:14px;color:#ddeeff}.cell b u{font-size:10px;color:#4a6a8a;text-decoration:none;margin-inline-start:3px;font-weight:500}
+.cell em{display:block;font-style:normal;font-size:10px;color:var(--a)}
+.cell.z{opacity:.35}
+.bn{background:linear-gradient(135deg,#0a1a10,#08140c);border:1px solid #1a4026;border-radius:16px;padding:1rem 1.1rem;display:flex;align-items:center;gap:12px}
+.bc{width:40px;height:40px;border-radius:50%;background:#1a5a2a;border:1px solid #2a8040;display:grid;place-items:center;color:#6dd48d;font-size:18px;flex-shrink:0}
+.bt{font-size:14px;font-weight:700;color:#6dd48d}.bs{font-size:11.5px;color:#4a8a5a;margin-top:2px}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{color:#4a6a8a;padding:8px 10px;text-align:right;font-weight:600;font-size:11px;border-bottom:1px solid #12233d;white-space:nowrap}
+.tbl td{padding:9px 10px;border-bottom:1px solid #0a1428;white-space:nowrap}
+.tbl td:not(:first-child){color:#90c8ff;font-weight:600}
+.tbl tr.tt td{background:#0a1630;color:#fff;font-weight:700}
+.tbl small{color:#d4822a}
+.pw{margin-bottom:11px}.pw:last-child{margin:0}
+.pl{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;margin-bottom:5px}
+.pb{height:7px;background:#0a1224;border-radius:4px;overflow:hidden}
+.pf{height:100%;border-radius:4px;transition:width .4s}
+select{width:100%;padding:10px 12px;margin-bottom:14px;border-radius:10px;border:1px solid #12233d;background:#040a18;color:#ddeeff;font:inherit;font-size:13px}
+.sum{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #12233d;color:#90c8ff;font-weight:700}
+input[type=number]{width:84px;padding:6px;border:1px solid #12233d;border-radius:8px;background:#040a18;color:#ddeeff;font:inherit;text-align:center}
+.cost{background:linear-gradient(135deg,#0a1a10,#08140c);border:1px solid #1a4026;border-radius:16px;padding:1rem 1.1rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cost b{font-size:22px;color:#6dd48d}.cost span{font-size:12px;color:#4a8a5a}
+.note{font-size:11.5px;color:#6f8fb0;line-height:1.7}.note b{color:#ddeeff}
+.warn{border-right:3px solid #d4822a;background:#150c02;color:#d4a05a;padding:10px 12px;border-radius:10px;font-size:12px;margin-top:10px;line-height:1.7}
+.rw{display:flex;align-items:center;gap:9px;font-size:13px;padding:5px 0}
+.fld{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fld label{font-size:11.5px;color:#6f8fb0;display:block}
+.fld input,.fld select{width:100%;margin:4px 0 0;padding:8px;border:1px solid #12233d;border-radius:8px;background:#040a18;color:#ddeeff;font:inherit;text-align:center}
+@media(max-width:520px){.fld{grid-template-columns:1fr 1fr}}
+.stp{display:flex;gap:12px;background:#070d1c;border:1px solid #0f1e35;border-radius:14px;padding:.9rem 1rem;margin-bottom:10px}
+.sn{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;flex-shrink:0;border:1px solid #3a80d0;color:#90c8ff;background:#0a1630}
+.stt{font-size:13.5px;font-weight:700;color:#ddeeff}.stn{font-size:12px;color:#5f7fa0;margin-top:3px;line-height:1.6}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pc{background:#070d1c;border:1px solid #0f1e35;border-radius:14px;padding:1rem;text-align:center}
+.pc i{font-style:normal;font-size:28px;display:block;margin-bottom:6px}.pc b{display:block;font-size:13px;color:#ddeeff}.pc small{font-size:11px;color:#5f7fa0;line-height:1.5;display:block;margin-top:2px}
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px}
+.dy{background:#070d1c;border:1px solid #0f1e35;border-radius:12px;padding:8px 2px;text-align:center}
+.dy small{display:block;font-size:10px;color:#5f7fa0}.dy b{font-size:18px;display:block;line-height:1.5}.dy em{font-style:normal;font-size:9.5px;color:#4a6a8a}
+.dy.on{border-color:#3a80d0;background:#0a1630}.dy.on em{color:#90c8ff}
+.dsel{display:flex;align-items:center;gap:8px;font-size:12px;color:#6f8fb0}.dsel select{width:auto;margin:0;padding:5px 8px;font-size:12px}
+.ex{display:flex;align-items:center;gap:9px;font-size:13px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)}.ex:last-child{border:0}.ex .qty{min-width:68px;text-align:center}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="hd">
+    <div class="ht">🥗 <span>جدولي</span> الغذائي</div>
+    <div class="hs">تحليل كامل للماكرو والمعادن والفيتامينات · القيم تقريبية (USDA)</div>
+    <div class="pills" id="pills"></div>
+    <div class="opt"><label><input type="checkbox" id="pot" onchange="draw()"> احسب البطاطس المسلوقة ضمن المجموع</label></div>
+  </div>
+  <div class="tabs">
+    <div class="tab on" onclick="showPage(1,this)">🍽 الأصناف</div>
+    <div class="tab" onclick="showPage(2,this)">📊 التغذية</div>
+    <div class="tab" onclick="showPage(3,this)">🔥 السعرات</div>
+    <div class="tab" onclick="showPage(4,this)">🏋️ التمرين</div>
+    <div class="tab" onclick="showPage(5,this)">⛹️ البروتوكول</div>
+    <div class="tab" onclick="showPage(6,this)">📦 الشهري</div>
+  </div>
+</div>
+<div class="page on" id="p1"></div>
+<div class="page" id="p2"></div>
+<div class="page" id="p3"></div>
+<div class="page" id="pw"></div>
+<div class="page" id="p4"></div>
+<div class="page" id="p5"></div>
+<script>
+// ترتيب العناصر: [الاسم، الوحدة، الاحتياج اليومي، نوع: n=محايد، l=حد أعلى]
+const N=[
+["السعرات","kcal",2500,"n"],["البروتين","g",56],["الدهون","g",70,"n"],["الكربوهيدرات","g",130,"n"],["الألياف","g",38],
+["الكالسيوم","mg",1000],["الفسفور","mg",700],["المغنيسيوم","mg",420],["الزنك","mg",11],["الحديد","mg",8],["البوتاسيوم","mg",3400],["الصوديوم","mg",2300,"l"],
+["السيلينيوم","µg",55],["النحاس","mg",0.9],["المنجنيز","mg",2.3],
+["فيتامين د","IU",600],["فيتامين أ","µg",900],["فيتامين ج","mg",90],["فيتامين هـ","mg",15],["فيتامين ك","µg",120],
+["B1 ثيامين","mg",1.2],["B2 ريبوفلافين","mg",1.3],["B3 نياسين","mg",16],["B6","mg",1.7],["B12","µg",2.4],["الفولات B9","µg",400]];
+const SEC={0:"الطاقة والماكرو",5:"المعادن",15:"الفيتامينات"};
+// كل عنصر: [الاسم، الكمية، القيم بنفس ترتيب N]
+const D=[
+["عدس أصفر (نيء)","100غ",[352,24.6,1.1,63,10.8,35,281,47,3.3,6.5,677,6,8.3,0.5,1.3,0,2,4.5,0.5,5,0.87,0.2,2.6,0.54,0,479]],
+["تمر","7 حبات",[197,1.8,0.3,52.5,5.6,27,43,30,0.3,0.7,459,1.4,2.1,0.25,0.2,0,0,0,0.04,1.9,0.04,0.05,1.1,0.18,0,10.5]],
+["عسل طبيعي","ملعقة كبيرة",[64,0.06,0,17.3,0,1,1,0.1,0.04,0.09,11,1,0.1,0.01,0.02,0,0,0.1,0,0,0,0.01,0.04,0,0,0]],
+["شاهي أخضر + حليب","كوب (كيسين)",[63,3.2,3.3,4.8,0,113,84,15,0.4,0.1,157,43,3.7,0.02,0.5,10,46,0,0.07,0.3,0.04,0.17,0.1,0.04,0.45,17]],
+["بذور يقطين مقشرة","30غ",[168,9.1,14.7,3.2,1.8,14,370,178,2.3,2.6,243,2,2.8,0.4,1.35,0,0,0.6,0.66,2.2,0.08,0.05,1.5,0.04,0,17]],
+["فراولة","100غ",[32,0.7,0.3,7.7,2,16,24,13,0.14,0.41,153,1,0.4,0.05,0.39,0,1,58.8,0.29,2.2,0.02,0.02,0.39,0.05,0,24]],
+["موز","حبة",[105,1.3,0.4,27,3.1,6,26,32,0.18,0.31,422,1,1.2,0.1,0.32,0,4,10.3,0.1,0.6,0.04,0.09,0.8,0.43,0,24]],
+["صدور دجاج (نيء)","200غ",[240,45,5.2,0,0,10,426,56,1.4,0.8,668,90,44,0.08,0.02,8,12,0,0.4,0,0.14,0.2,21,1.2,0.4,8]],
+["رز (نيء)","100غ",[365,7.1,0.7,80,1.3,28,115,25,1.1,0.8,115,5,15,0.22,1.1,0,0,0,0.1,0.1,0.07,0.05,1.6,0.16,0,8]],
+["كريمة طبخ","30غ",[58,0.9,6,1.2,0,30,25,3,0.1,0,40,12,1,0,0,4,60,0,0.2,0.5,0.01,0.05,0,0.01,0.1,1]],
+["زبدة","10غ",[72,0.1,8.1,0,0,2.4,2.4,0.2,0,0,2.4,8,0,0,0,2.4,68,0,0.24,0.7,0,0,0,0,0.02,0]],
+["سردين معلب بالعظام","90غ مصفى",[187,22.1,10.4,0,0,344,441,35,1.2,2.6,357,276,47,0.17,0.11,172,29,0,1.8,2.3,0.07,0.21,4.7,0.15,8,9]],
+["ليمون","نصف حبة",[8,0.3,0.1,2.6,0.3,5,6,4,0.03,0.1,50,1,0,0.02,0,0,0,19,0,0,0.02,0.01,0.1,0.03,0,5]],
+["بطاطس مسلوقة (اختياري)","200غ",[174,3.8,0.2,40,3.6,10,88,44,0.6,0.6,758,10,0.6,0.34,0.28,0,0,26,0.02,4,0.2,0.04,2.6,0.6,0,18],"pot"]];
+const W=[
+["كبدة بتلو (أسبوعي)","150غ مطبوخة",[263,39.8,7,5.7,0,9,746,33,7.4,9.8,528,116,60,21.9,0.6,72,9873,2.9,0.6,5,0.29,5.1,25.5,1.6,125,380],1],
+["فيتامين د (أحد + أربعاء)","5000 IU × 2",[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5000,0,0,0,0,0,0,0,0,0,0],2]];
+const f=v=>v===0?"–":v>=100?Math.round(v).toLocaleString("en"):v>=10?v.toFixed(1):v>=1?v.toFixed(2):v.toFixed(2);
+const M=[
+["عدس أصفر","100غ/يوم",3,"كجم",8],["تمر","7 حبات/يوم",2.1,"كجم",25],["عسل طبيعي","ملعقة/يوم",0.63,"كجم",120],
+["حليب","100مل/يوم",3,"لتر",6],["شاهي أخضر (علبة 100 كيس / 200غ)","كيسين/يوم = 4غ (العلبة تكفي 50 يوم)",60,"كيس",0.18],["بذور يقطين مقشرة","30غ/يوم",0.9,"كجم",60],
+["فراولة","100غ/يوم",3,"كجم",20],["موز","حبة/يوم",30,"حبة",1],["صدور دجاج","200غ × ~26 يوم (الكبدة تحل محله)",5.1,"كجم",17],
+["رز","100غ/يوم",3,"كجم",9],["كريمة طبخ","30غ/يوم",0.9,"لتر",20],["زبدة","10غ/يوم",0.3,"كجم",90],
+["سردين معلب","علبة/يوم",30,"علبة",4.5],["ليمون","نصف حبة/يوم",15,"حبة",0.7],
+["كبدة بتلو (نيئة)","150غ مطبوخة/أسبوع ≈ 215غ نيئة",0.9,"كجم",55],["فيتامين د 5000 IU","أحد + أربعاء",9,"كبسولة",0.8],
+["بطاطس (اختياري)","200غ/يوم",6,"كجم",4,1]];
+
+const CAT=["amber","rose","gold","blue","purple","rose","gold","green","amber","blue","blue","teal","lime","amber"],CW=["red","gold"];
+const HEX={amber:"#f0a030",rose:"#f06a9a",gold:"#e3c04a",blue:"#5aa8f0",purple:"#a78bfa",green:"#4cc38a",teal:"#2dd4bf",lime:"#a3d94a",red:"#f2665a"};
+const ID=["🫘","🌴","🍯","🍵","🌰","🍓","🍌","🍗","🍚","🥛","🧈","🐟","🍋","🥔"],IW=["🫀","☀️"];
+const GR=[[0,5,"⚡ الطاقة والماكرو"],[5,15,"🪨 المعادن"],[15,26,"💊 الفيتامينات"]];
+const CL={g:"#4cc38a",a:"#e3b84a",r:"#f2665a","":"#60a8f0"};
+const T=[],AV=[];let SEL=5,LST=[];
+function cls(n,p){return n[3]==="l"?(p>100?"r":p>70?"a":"g"):n[3]?"":(p>=100?"g":p>=50?"a":"r")}
+function calc(){
+  const pot=document.getElementById("pot").checked,L=[];
+  D.forEach((d,k)=>{if(!d[3]||pot)L.push({d,ic:ID[k],c:CAT[k],wk:0,fac:k==7?6/7:1})});
+  W.forEach((w,k)=>L.push({d:w,ic:IW[k],c:CW[k],wk:1,fac:w[3]/7}));
+  N.forEach((n,i)=>{let t=0,a=0;L.forEach(o=>{const v=o.d[2][i];if(!o.wk)t+=v;a+=v*o.fac});T[i]=t;AV[i]=a});
+  return LST=L;
+}
+function card(o){
+  const{d,ic,c,wk}=o,v=d[2];
+  const hl=N.map((n,i)=>[n[0],n[3]?0:v[i]/n[2]*100]).filter(x=>x[1]>=15).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  let h=`<div class="mc ${c}"><div class="mh"><div class="ico">${ic}</div><div style="flex:1"><div class="mt">${d[0]}</div><div class="ms">${wk?"✦ "+(d[3]==1?"مرة":"مرتين")+" أسبوعياً":"يومياً"}</div></div><span class="qty">${d[1]}</span></div>`;
+  h+=`<div class="sr"><span class="st">🔥 ${f(v[0])} سعرة</span><span class="st">🥩 ${f(v[1])}غ بروتين</span><span class="st">🍞 ${f(v[3])}غ كارب</span><span class="st">🧈 ${f(v[2])}غ دهون</span></div>`;
+  if(hl.length)h+=`<hr class="dv"><div class="tags">`+hl.map(x=>`<span class="tg">${x[0]} · ${x[1]>=1000?"+1000":Math.round(x[1])}%</span>`).join("")+`</div>`;
+  h+=`<details><summary>عرض كل العناصر الغذائية ▾</summary>`;
+  GR.forEach(g=>{h+=`<h4>${g[2]}</h4><div class="cells">`;
+    for(let i=g[0];i<g[1];i++){const n=N[i],x=v[i],p=(!n[3]&&x)?Math.round(x/n[2]*100):null;
+      h+=`<div class="cell${x?"":" z"}"><small>${n[0]}</small><b>${f(x)}<u>${x?n[1]:""}</u></b>${p!==null?`<em>${p}% من الاحتياج</em>`:""}</div>`}
+    h+=`</div>`});
+  return h+`</details></div>`;
+}
+function draw(){
+  const L=calc();
+  pills.innerHTML=[["🔥",Math.round(AV[0])+" سعرة","#f0a030"],["🥩",Math.round(AV[1])+"غ بروتين","#4cc38a"],["🍞",Math.round(AV[3])+"غ كارب","#5aa8f0"],["🧈",Math.round(AV[2])+"غ دهون","#f06a9a"]].map(p=>`<span class="pill" style="--a:${p[2]}">${p[0]} ${p[1]} / يوم</span>`).join("");
+  let h=`<div class="sl">الوجبات اليومية</div>`+L.filter(o=>!o.wk).map(card).join("")+`<div class="sl">أسبوعي ومكملات</div>`+L.filter(o=>o.wk).map(card).join("");
+  h+=`<div class="mc gold"><div class="mh"><div class="ico">📅</div><div><div class="mt">بروتوكول فيتامين د الأسبوعي</div><div class="ms">الأحد والأربعاء ثابتان كل أسبوع</div></div></div>
+  <div class="rw"><span class="qty">الأحد</span>مكمل فيتامين د 5000 IU صباحاً</div>
+  <div class="rw"><span class="qty">الأربعاء</span>مكمل فيتامين د 5000 IU صباحاً</div>
+  <div class="rw"><span class="qty">الجمعة</span>مكمل فيتامين د إذا لم تتعرض للشمس الخميس والجمعة والسبت</div></div>
+  <div class="warn">⚠️ الكبدة غنية جداً بفيتامين أ والنحاس، فمرة أسبوعياً كافية ولا تزد عنها. فيتامين د: 10,000 وحدة/أسبوع (≈1,430 يومياً) أقل من الحد الأعلى الآمن (4,000/يوم)، ويُفضّل فحص مستواك دورياً. هذا جدول إرشادي وليس بديلاً عن استشارة مختص تغذية.</div>`;
+  p1.innerHTML=h;nutri(L);src();drawM();calPage();protoPage();workoutPage();
+}
+function nutri(L){
+  const tot=N.filter(n=>!n[3]).length,ok=N.filter((n,i)=>!n[3]&&AV[i]>=n[2]).length;
+  let h=`<div class="bn"><div class="bc">✓</div><div><div class="bt">${ok} من ${tot} عنصر مغطى 100% أو أكثر</div><div class="bs">المتوسط اليومي: الكبدة وفيتامين د متوسط أسبوعي، والكبدة تحل محل دجاج يوم واحد</div></div></div>`;
+  h+=`<div class="sl">ملخص الماكرو</div><div class="mc plain"><div class="tw"><table class="tbl"><tr><th>الصنف</th><th>السعرات</th><th>البروتين</th><th>الكارب</th><th>الدهون</th></tr>`;
+  L.forEach(o=>{const v=o.d[2];h+=`<tr><td>${o.ic} ${o.d[0]}${o.wk?" <small>(أسبوعي)</small>":""}</td>`+[0,1,3,2].map(i=>`<td>${f(v[i])}</td>`).join("")+`</tr>`});
+  h+=`<tr class="tt"><td>المجموع (يوم عادي)</td>`+[0,1,3,2].map(i=>`<td>${f(T[i])}</td>`).join("")+`</tr><tr class="tt"><td>المتوسط اليومي</td>`+[0,1,3,2].map(i=>`<td>${f(AV[i])}</td>`).join("")+`</tr></table></div></div>`;
+  h+=`<div class="sl">تغطية الاحتياج اليومي</div>`;
+  GR.forEach(g=>{h+=`<div class="mc plain"><div class="mt sm">${g[2]}</div>`;
+    for(let i=g[0];i<g[1];i++){const n=N[i],p=AV[i]/n[2]*100,col=CL[cls(n,p)];
+      h+=`<div class="pw"><div class="pl"><span>${n[0]}<small style="color:#4a6a8a"> (${n[2].toLocaleString("en")} ${n[1]}${n[3]==="l"?" حد أعلى":""})</small></span><b style="color:${col}">${f(AV[i])} ${n[1]} · ${Math.round(p)}%</b></div><div class="pb"><div class="pf" style="width:${Math.min(p,100)}%;background:${col}"></div></div></div>`}
+    h+=`</div>`});
+  h+=`<div class="sl">من وين يجي كل عنصر؟</div><div class="mc plain"><select id="sel" onchange="SEL=+this.value;src()">`+N.map((n,i)=>`<option value="${i}">${n[0]} (${n[1]})</option>`).join("")+`</select><div id="src"></div></div>`;
+  p2.innerHTML=h;document.getElementById("sel").value=SEL;
+}
+function src(){
+  const e=document.getElementById("src");if(!e)return;
+  const i=SEL,n=N[i],tot=AV[i];
+  const rows=LST.map(o=>({o,x:o.d[2][i]*o.fac})).filter(r=>r.x>0).sort((a,b)=>b.x-a.x);
+  e.innerHTML=`<div class="sum"><span>المتوسط اليومي</span><span>${f(tot)} ${n[1]} · ${Math.round(tot/n[2]*100)}% من الاحتياج</span></div>`+(rows.length?rows.map(r=>`<div class="pw"><div class="pl"><span>${r.o.ic} ${r.o.d[0]}${r.o.fac<1?" <small style='color:#d4822a'>(متوسط أسبوعي)</small>":""}</span><span>${f(r.x)} ${n[1]} · ${Math.round(r.x/tot*100)}%</span></div><div class="pb"><div class="pf" style="width:${r.x/tot*100}%;background:${HEX[r.o.c]}"></div></div></div>`).join(""):`<p class="note">لا يوفر أي صنف من الأصناف هذا العنصر.</p>`);
+}
+function drawM(){
+  let h=`<div class="cost"><span>التكلفة الشهرية التقريبية (ر.س)</span><b id="total"></b></div><p class="note" style="margin-bottom:12px">الأسعار تقريبية للسوق السعودي، عدّل أي كمية أو سعر والإجمالي يتحدث.</p><div class="mc plain"><div class="tw"><table class="tbl"><tr><th>الصنف</th><th>الاستهلاك</th><th>الكمية الشهرية</th><th>الوحدة</th><th>سعر الوحدة</th><th>التكلفة</th></tr>`;
+  M.forEach((m,i)=>{h+=`<tr><td>${m[0]}</td><td style="color:#6f8fb0;font-weight:400">${m[1]}</td><td><input type="number" step="any" min="0" value="${m[2]}" oninput="M[${i}][2]=+this.value;sum()"></td><td style="color:#6f8fb0;font-weight:400">${m[3]}</td><td><input type="number" step="any" min="0" value="${m[4]}" oninput="M[${i}][4]=+this.value;sum()"></td><td id="c${i}"></td></tr>`});
+  p5.innerHTML=h+`</table></div></div>`;sum();
+}
+function sum(){
+  const pot=document.getElementById("pot").checked;let t=0;
+  M.forEach((m,i)=>{const c=m[2]*m[4];if(!m[5]||pot)t+=c;const e=document.getElementById("c"+i);if(e)e.textContent=Math.round(c).toLocaleString("en")+(m[5]&&!pot?" (غير محسوب)":"")});
+  document.getElementById("total").textContent=Math.round(t).toLocaleString("en");
+}
+function showPage(n,el){document.querySelectorAll(".page").forEach((p,k)=>p.classList.toggle("on",k==n-1));document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));el.classList.add("on");window.scrollTo(0,0)}
+const P={w:64,h:165,a:21,s:"m",fr:1.3,ft:1.725,n:4};
+function calPage(){
+  const o=(k,v,t)=>`<option value="${v}"${P[k]==v?" selected":""}>${t}</option>`;
+  p3.innerHTML=`<div class="sl">بياناتك</div><div class="mc plain"><div class="fld">
+  <label>الوزن (كجم)<input type="number" value="${P.w}" oninput="P.w=+this.value;cal()"></label>
+  <label>الطول (سم)<input type="number" value="${P.h}" oninput="P.h=+this.value;cal()"></label>
+  <label>العمر (سنة)<input type="number" value="${P.a}" oninput="P.a=+this.value;cal()"></label>
+  <label>الجنس<select onchange="P.s=this.value;cal()"><option value="m"${P.s=="m"?" selected":""}>ذكر</option><option value="f"${P.s=="f"?" selected":""}>أنثى</option></select></label>
+  <label>أيام التمرين / أسبوع<input type="number" min="0" max="7" value="${P.n}" oninput="P.n=Math.min(7,Math.max(0,+this.value));cal()"></label>
+  <label>نشاط يوم التمرين<select onchange="P.ft=+this.value;cal()">${o("ft",1.55,"متوسط (1.55)")}${o("ft",1.65,"نشيط (1.65)")}${o("ft",1.725,"عالي (1.725)")}${o("ft",1.9,"عالي جداً (1.9)")}</select></label>
+  <label style="grid-column:1/-1">نشاط يوم الراحة<select onchange="P.fr=+this.value;cal()">${o("fr",1.2,"خامل — جلوس أغلب اليوم (1.2)")}${o("fr",1.3,"خفيف — مشي + عقلة وقفزة ماساي (1.3)")}${o("fr",1.375,"نشيط خفيف (1.375)")}</select></label></div>
+  <p class="note" style="margin-top:10px">ذكر، 21 سنة (مواليد 6 يناير 2005). الحساب بمعادلة Mifflin-St Jeor، ومعامل يوم التمرين يشمل حرق الحديد نفسه فلا تخصمه مرة ثانية.</p></div><div id="calres"></div>`;
+  cal();
+}
+function cal(){
+  const{w,h,a,s,fr,ft,n}=P,e=document.getElementById("calres");if(!e||!(w>0&&h>0&&a>0))return;
+  const bmr=10*w+6.25*h-5*a+(s=="m"?5:-161),bmi=w/((h/100)**2),tt=bmr*ft,tr=bmr*fr,av=(n*tt+(7-n)*tr)/7,cur=AV[0],R=Math.round,L=v=>R(v).toLocaleString("en");
+  let x=`<div class="sl">سعرات المحافظة</div><div class="bn"><div class="bc">🔥</div><div style="flex:1"><div class="bt">متوسط أسبوعي ≈ ${L(av)} سعرة / يوم</div><div class="bs">معدل الأيض الأساسي ${L(bmr)} · مؤشر كتلة الجسم ${bmi.toFixed(1)}</div></div></div>
+  <div class="cells" style="margin-top:10px;grid-template-columns:1fr 1fr"><div class="cell"><small>🏋️ يوم تمرين (${n} أيام)</small><b>${L(tt)}<u>سعرة</u></b></div><div class="cell"><small>😴 يوم راحة (${7-n} أيام)</small><b>${L(tr)}<u>سعرة</u></b></div></div>`;
+  if(a<18)x+=`<div class="warn">⚠️ تحت 18 سنة وأنت في مرحلة نمو: لا يُنصح بعمل عجز سعرات. راجع طبيباً أو أخصائي تغذية.</div>`;
+  const G=[["⚖️","محافظة على الوزن",0,"blue"],["🟢","عجز خفيف (10%)",.10,"green"],["🟡","عجز متوسط (20%) — الأنسب للنشافة",.20,"gold"],["🔴","عجز قوي (25%) — لفترة قصيرة فقط",.25,"red"]];
+  x+=`<div class="sl">السعرات المستهدفة</div>`+G.map(g=>{
+    const k=1-g[2],a1=tt*k,a2=tr*k,a3=av*k,lo=a2<bmr;
+    return `<div class="mc ${g[3]}"><div class="mh" style="margin-bottom:9px"><div class="ico">${g[0]}</div><div style="flex:1"><div class="mt">${g[1]}</div><div class="ms">${g[2]?`عجز أسبوعي ≈ ${L((av-a3)*7)} سعرة ≈ نزول ${((av-a3)*7/7700).toFixed(2)} كجم/أسبوع`:"ثبات الوزن"}</div></div></div>
+    <div class="cells" style="grid-template-columns:repeat(3,1fr)"><div class="cell"><small>🏋️ يوم تمرين</small><b>${L(a1)}</b></div><div class="cell"><small>😴 يوم راحة</small><b style="${lo?"color:#f2665a":""}">${L(a2)}</b></div><div class="cell"><small>📅 المتوسط</small><b>${L(a3)}</b></div></div>${lo?`<div class="warn">سعرات يوم الراحة أقل من معدل الأيض الأساسي (${L(bmr)})، غير مناسبة.</div>`:""}</div>`}).join("");
+  const pt=Math.round((cur-tt)/tt*100),pr_=Math.round((cur-tr)/tr*100),wkc=(cur-av)*7/7700,col=v=>v<=-30?"#f2665a":v<=-8?"#4cc38a":"#e3b84a";
+  const tg=.8,gt=tt*tg,gr=tr*tg,rice=v=>Math.round(Math.abs(v)/3.65),adv=(v,nm)=>Math.abs(v)<60?`${nm}: جدولك مناسب كما هو.`:v>0?`${nm}: زد ~${R(v)} سعرة (مثلاً ${rice(v)}غ رز نيء إضافي).`:`${nm}: قلل ~${R(-v)} سعرة (مثلاً ${rice(v)}غ رز أقل، أو التمر والعسل).`;
+  const lo2=1.6*w,hi2=2.2*w,pro=AV[1];
+  x+=`<div class="sl">خطتك الحالية (${L(cur)} سعرة)</div><div class="mc plain">
+  <div class="pw"><div class="pl"><span>🏋️ مقابل يوم التمرين</span><b style="color:${col(pt)}">${Math.abs(pt)}% ${pt<0?"عجز":"فائض"}</b></div><div class="pb"><div class="pf" style="width:${Math.min(cur/tt*100,100)}%;background:${col(pt)}"></div></div></div>
+  <div class="pw"><div class="pl"><span>😴 مقابل يوم الراحة</span><b style="color:${col(pr_)}">${Math.abs(pr_)}% ${pr_<0?"عجز":"فائض"}</b></div><div class="pb"><div class="pf" style="width:${Math.min(cur/tr*100,100)}%;background:${col(pr_)}"></div></div></div>
+  <p class="note">المتوسط الأسبوعي ${wkc<0?"عجز":"فائض"} ≈ ${Math.abs(wkc).toFixed(2)} كجم/أسبوع (تقديري). ${pt<=-30?"في يوم التمرين العجز كبير ويؤثر على الأداء والاستشفاء، فالأفضل ترفع سعرات يوم التمرين.":""}</p>
+  <hr class="dv"><div class="mt sm">كيف توزع السعرات بين اليومين (عجز 20%)</div>
+  <p class="note">• ${adv(gt-cur,"يوم التمرين")} (الهدف ${L(gt)})<br>• ${adv(gr-cur,"يوم الراحة")} (الهدف ${L(gr)})</p>
+  <hr class="dv"><div class="pw"><div class="pl"><span>البروتين: ${R(pro)}غ (${(pro/w).toFixed(1)} غ/كجم)</span><b style="color:${pro>=lo2?"#4cc38a":"#e3b84a"}">الهدف ${R(lo2)}–${R(hi2)}غ</b></div><div class="pb"><div class="pf" style="width:${Math.min(pro/lo2*100,100)}%;background:${pro>=lo2?"#4cc38a":"#e3b84a"}"></div></div></div></div>`;
+  e.innerHTML=x;
+}
+function protoPage(){
+  const S=[["قفزة الماساي + عقلة يومياً","ضغط ميكانيكي على الغضاريف يحفز إطالة العظم، والعقلة تمد العمود الفقري وتفتح المسافات بين الفقرات"],["30 دقيقة شمس — كشف اليد والساق","يولّد فيتامين د ويفتح الباب للكالسيوم والفسفور للبناء الفعلي في العظم"],["بذور اليقطين — كالسيوم وفسفور يومي","أفضل نافذة امتصاص بعد التمرين مباشرة"],["سردين بعظامه + ليمون","كالسيوم + فسفور + فيتامين د بنسبة 2:1 طبيعية، والليمون يعزز الامتصاص"]];
+  p4.innerHTML=`<div class="sl">بروتوكول الطول — يومي</div>
+  <div class="mc gold"><div class="mh" style="margin:0"><div class="ico">🔑</div><div><div class="mt">القاعدة الذهبية</div><div class="ms" style="font-size:12px;color:#c0b070;line-height:1.7;margin-top:4px">الكالسيوم والفسفور لا يبنيان الطول بدون فيتامين د — الشمس أولاً ← تفتح المستقبلات ← ثم المعادن تجد الباب مفتوحاً.</div></div></div></div>`
+  +S.map((s,i)=>`<div class="stp"><div class="sn">${i+1}</div><div><div class="stt">${s[0]}</div><div class="stn">${s[1]}</div></div></div>`).join("")
+  +`<div class="sl">بروتوكول التشغيل اليومي</div><div class="pg"><div class="pc"><i>💧</i><b>4 لتر ماء</b><small>خط أحمر — تصفية نواتج البروتين واللحم</small></div><div class="pc"><i>☀️</i><b>30د شمس</b><small>فيتامين د + تفعيل الكالسيوم والفسفور</small></div><div class="pc"><i>⛹️</i><b>قفزة الماساي</b><small>تحفيز ميكانيكي للنمو يومياً</small></div><div class="pc"><i>🏋️</i><b>عقلة يومية</b><small>تمديد العمود الفقري وفتح الفقرات</small></div></div>
+  <div class="sl">بروتوكول مسائي ثابت</div>
+  <div class="mc purple"><div class="mh"><div class="ico">🌿</div><div><div class="mt">أشواغاندا — قبل النوم</div><div class="ms">تخفيض الكورتيزول + تعمق النوم + دعم التستوستيرون</div></div></div><div class="rw"><span class="qty">يومياً</span>مكمل أشواغاندا — آخر الليل قبل النوم</div><hr class="dv"><div class="tags"><span class="tg">تخفيض كورتيزول</span><span class="tg">تعمق النوم</span><span class="tg">دعم التستوستيرون</span><span class="tg">تقليل القلق</span></div></div>
+  <div class="sl">بروتوكول الشمس الأسبوعي</div>
+  <div class="mc amber"><div class="mh"><div class="ico">🌅</div><div><div class="mt">تعرض للشمس — 3 مرات أسبوعياً</div><div class="ms">الخميس · الجمعة · السبت — أو أي 3 أيام متاحة</div></div></div><div class="rw"><span class="qty">10 دقائق</span>الجزء الأمامي — كشف الصدر والبطن والذراعين</div><div class="rw"><span class="qty">10 دقائق</span>الجزء الخلفي — كشف الظهر والساقين</div><div class="rw"><span class="qty">مرن</span>لو فاتك يوم انقله لليوم الذي بعده، المهم 3 مرات أسبوعياً</div><hr class="dv"><div class="tags"><span class="tg">توليد فيتامين د طبيعي</span><span class="tg">إجمالي 20 دقيقة</span><span class="tg">3 مرات أسبوعياً على الأقل</span></div></div>`;
+}
+const DY=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+const WK=[
+{t:"Push — دفع",ic:"💪",c:"red",m:"صدر · أكتاف · ترايسبس",d:6,ex:[["بنش بريس","4×6-8"],["انكلاين دمبل بريس","3×8-10"],["شولدر بريس","3×8-10"],["رفع جانبي","3×12-15"],["ترايسبس بوش داون","3×10-12"],["ديبس أو أوفرهيد ترايسبس","2×10-12"]]},
+{t:"Pull — سحب",ic:"🧗",c:"blue",m:"ظهر · خلفي أكتاف · بايسبس",d:1,ex:[["عقلة (أو لات بول داون)","4×6-10"],["باربل رو","4×8"],["سيتد كيبل رو","3×10"],["فيس بول","3×15"],["بايسبس كيرل","3×10-12"],["هامر كيرل","2×10-12"]]},
+{t:"Legs — أرجل",ic:"🦵",c:"green",m:"فخذ أمامي وخلفي · سمانة",d:3,ex:[["سكوات","4×6-8"],["رومانيان ديدلفت","3×8-10"],["ليج بريس","3×10-12"],["ليج كيرل","3×10-12"],["لانجز","2×10 لكل رجل"],["سمانة","4×12-15"]]},
+{t:"Full Body — جسم كامل",ic:"🔥",c:"amber",m:"تمارين مركبة للجسم كله",d:5,ex:[["ديدلفت (أو تراب بار)","3×5"],["بنش دمبل","3×8-10"],["رو بالدمبل أو كيبل","3×8-10"],["جوبلت سكوات","3×8-10"],["رفع جانبي","2×15"],["بايسبس + ترايسبس سوبرست","2×12"],["بلانك","3×45 ثانية"]]}];
+function workoutPage(){
+  const strip=DY.map((n,i)=>{const s=WK.filter(w=>w.d===i);return `<div class="dy${s.length?" on":""}"><small>${n}</small><b>${s.length?s.map(x=>x.ic).join(""):"😴"}</b><em>${s.length?s.map(x=>x.t.split(" ")[0]).join("+"):"راحة"}</em></div>`}).join("");
+  const clash=WK.some((w,i)=>WK.some((x,j)=>j>i&&x.d===w.d));
+  let h=`<div class="sl">جدولك الأسبوعي (4 أيام)</div><div class="mc plain"><div class="strip">${strip}</div><p class="note" style="margin-top:8px">غيّر يوم كل تمرين من البطاقات تحت. الأفضل راحة يوم بين التمارين المتشابهة.</p>${clash?`<div class="warn">⚠️ عندك تمرينين في نفس اليوم.</div>`:""}</div>`;
+  WK.forEach((w,i)=>{
+    h+=`<div class="mc ${w.c}"><div class="mh"><div class="ico">${w.ic}</div><div style="flex:1"><div class="mt">${w.t}</div><div class="ms">${w.m}</div></div></div>
+    <div class="dsel">📅 اليوم:<select onchange="WK[${i}].d=+this.value;workoutPage()">${DY.map((n,k)=>`<option value="${k}"${w.d===k?" selected":""}>${n}</option>`).join("")}</select></div><hr class="dv">`+w.ex.map(e=>`<div class="ex"><span class="qty">${e[1]}</span>${e[0]}</div>`).join("")+`</div>`;
+  });
+  h+=`<div class="mc plain"><div class="mt sm">ملاحظات التمرين</div><p class="note">• راحة 2-3 دقائق بين التمارين المركبة، و60-90 ثانية للعزل.<br>• زد الوزن أو التكرارات تدريجياً كل أسبوع (Progressive Overload) وبقي تكرارين تقريباً قبل الفشل.<br>• سعرات يوم التمرين ويوم الراحة محسوبة في تبويب السعرات.<br>• في يوم التمرين خلّ التمر والموز والعسل حول التمرين، والبروتين موزع على اليوم.<br>• أرقام التمارين اقتراح عام، عدّلها حسب برنامجك الحالي.</p></div>`;
+  pw.innerHTML=h;
+}
+draw();
+</script>
+</body>
+</html>
